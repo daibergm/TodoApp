@@ -5,3 +5,4 @@ export { default as NewToDoComponent } from './todo/NewToDoComponent';
 export {
   default as AddToDoButtonComponent,
 } from './todo/AddToDoButtonComponent';
+export { default as TodoItemComponent } from './todo/TodoItemComponent';

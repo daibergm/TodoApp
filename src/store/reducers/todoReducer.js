@@ -22,7 +22,7 @@ function todoReducer(state = initialState, action) {
     case UPDATE_TODO: {
       const toDos = [...state.toDos];
       const indexOfUpdate = toDos.findIndex(
-        todo => todo.title === todo.action.title,
+        todo => todo.title === action.todo.title,
       );
 
       toDos[indexOfUpdate] = action.todo;
