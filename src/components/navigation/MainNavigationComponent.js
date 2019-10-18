@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Header,
@@ -11,7 +11,21 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
+// Components
+import { NewToDoComponent, AddToDoButtonComponent } from '../index';
+
 const AllToDo = () => {
+  const [newToDo, setNewToDo] = useState(false);
+
+  const saveToDoData = todo => {
+    setNewToDo(false);
+    console.log(
+      `ToDo is: ${todo.title} ${
+        todo.completed ? 'completed!' : 'not completed!'
+      }`,
+    );
+  };
+
   return (
     <Container>
       <Header>
@@ -20,8 +34,14 @@ const AllToDo = () => {
         </Body>
       </Header>
       <Content>
-        <Text>All Section</Text>
+        {newToDo && (
+          <NewToDoComponent
+            onClick={saveToDoData}
+            onCancel={() => setNewToDo(false)}
+          />
+        )}
       </Content>
+      {!newToDo && <AddToDoButtonComponent onClick={() => setNewToDo(true)} />}
     </Container>
   );
 };
