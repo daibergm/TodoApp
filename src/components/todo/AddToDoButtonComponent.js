@@ -9,13 +9,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddToDoButtonComponent = () => {
+const AddToDoButtonComponent = ({ onClick }) => {
   return (
     <Container>
-      <Fab
-        style={styles.fab}
-        position="bottomRight"
-        onPress={() => console.log('Add toDo button clicked')}>
+      <Fab style={styles.fab} position="bottomRight" onPress={onClick}>
         <Icon name="add" />
       </Fab>
     </Container>
