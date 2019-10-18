@@ -22,7 +22,7 @@ function todoReducer(state = initialState, action) {
     case UPDATE_TODO: {
       const toDos = [...state.toDos];
       const indexOfUpdate = toDos.findIndex(
-        todo => todo.title === action.todo.title,
+        todo => todo.date === action.todo.date,
       );
 
       toDos[indexOfUpdate] = action.todo;
@@ -35,7 +35,7 @@ function todoReducer(state = initialState, action) {
 
     case DELETE_TODO:
       return {
-        toDos: state.toDos.filter(todo => todo.title !== action.todo.title),
+        toDos: state.toDos.filter(todo => todo.date !== action.todo.date),
       };
 
     default:

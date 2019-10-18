@@ -4,7 +4,6 @@ import { Body, Icon, CheckBox, ListItem, Input, Button } from 'native-base';
 const NewToDoComponent = ({ onClick, onCancel }) => {
   const [completed, setCompleted] = useState(false);
   const [title, setTitle] = useState('');
-  const [createAt, setCreateAt] = useState('');
 
   return (
     <ListItem>
@@ -13,7 +12,9 @@ const NewToDoComponent = ({ onClick, onCancel }) => {
         <Input
           placeholder="Wht needs to be done?"
           onChangeText={value => setTitle(value)}
-          onSubmitEditing={() => onClick({ title, completed })}
+          onSubmitEditing={() =>
+            onClick({ title, completed, date: new Date().toISOString() })
+          }
         />
       </Body>
       <Button transparent onPress={onCancel}>
