@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Header, Title, Content, Body } from 'native-base';
+import { StyleSheet, View } from 'react-native';
+import { Container, Header, Title, Content, Body, Text } from 'native-base';
 import { connect } from 'react-redux';
 
 // Actions
@@ -11,6 +12,15 @@ import {
   AddToDoButtonComponent,
   TodoItemComponent,
 } from '../components/index';
+
+// Styles
+const styles = StyleSheet.create({
+  listTitle: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+});
 
 const AllTodoContainer = props => {
   const [newToDo, setNewToDo] = useState(false);
@@ -58,13 +68,16 @@ const AllTodoContainer = props => {
         </Body>
       </Header>
       <Content>
-        {renderItems()}
         {newToDo && (
           <NewToDoComponent
             onClick={saveToDoData}
             onCancel={() => setNewToDo(false)}
           />
         )}
+        <View style={styles.listTitle}>
+          <Text>List of ToDos</Text>
+        </View>
+        {renderItems()}
       </Content>
       {!newToDo && showFabBtn && (
         <AddToDoButtonComponent onClick={() => setNewToDo(true)} />
