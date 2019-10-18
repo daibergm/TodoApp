@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Container,
   Header,
@@ -12,75 +12,29 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 // Components
-import { NewToDoComponent, AddToDoButtonComponent } from '../index';
+import AllTodoContainer from '../../containers/AllTodoContainer';
 
-const AllToDo = () => {
-  const [newToDo, setNewToDo] = useState(false);
+const AllTodo = () => (
+  <AllTodoContainer showFabBtn screen="All" title="All ToDos" />
+);
 
-  const saveToDoData = todo => {
-    setNewToDo(false);
-    console.log(
-      `ToDo is: ${todo.title} ${
-        todo.completed ? 'completed!' : 'not completed!'
-      }`,
-    );
-  };
+const ActiveTodo = () => (
+  <AllTodoContainer showFabBtn={false} screen="Active" title="Active ToDos" />
+);
 
-  return (
-    <Container>
-      <Header>
-        <Body>
-          <Title>All</Title>
-        </Body>
-      </Header>
-      <Content>
-        {newToDo && (
-          <NewToDoComponent
-            onClick={saveToDoData}
-            onCancel={() => setNewToDo(false)}
-          />
-        )}
-      </Content>
-      {!newToDo && <AddToDoButtonComponent onClick={() => setNewToDo(true)} />}
-    </Container>
-  );
-};
-
-const ActiveToDo = () => {
-  return (
-    <Container>
-      <Header>
-        <Body>
-          <Title>Active</Title>
-        </Body>
-      </Header>
-      <Content>
-        <Text>Active Section</Text>
-      </Content>
-    </Container>
-  );
-};
-
-const CompletedToDo = () => {
-  return (
-    <Container>
-      <Header>
-        <Body>
-          <Title>Completed</Title>
-        </Body>
-      </Header>
-      <Content>
-        <Text>Completed Section</Text>
-      </Content>
-    </Container>
-  );
-};
+const CompletedTodo = () => (
+  <AllTodoContainer
+    showFabBtn={false}
+    screen="Completed"
+    title="Completed ToDos"
+  />
+);
 
 const TabNavigator = createBottomTabNavigator(
   {
-    All: AllToDo,
-    Active: ActiveToDo,
-    Completed: CompletedToDo,
+    All: AllTodo,
+    Active: ActiveTodo,
+    Completed: CompletedTodo,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
