@@ -11,6 +11,9 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
+// Components
+import { NewToDoComponent, AddToDoButtonComponent } from '../index';
+
 const AllToDo = () => {
   return (
     <Container>
@@ -20,8 +23,9 @@ const AllToDo = () => {
         </Body>
       </Header>
       <Content>
-        <Text>All Section</Text>
+        <NewToDoComponent />
       </Content>
+      <AddToDoButtonComponent />
     </Container>
   );
 };
